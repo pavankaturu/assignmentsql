@@ -1,0 +1,128 @@
+1
+select d.dname
+from dept d
+left join emp e
+on d.deptno=e.deptno
+where e.deptno is null
+
+2
+select job,ename
+from emp
+where job like 'PRESIDENT'
+
+3
+select ename,job
+from dept d
+full join emp e
+on d.deptno=e.deptno
+where loc like 'NEWYORK' and comm>1000
+
+4
+select count(*) as numofemp
+from dept d
+full join emp e
+on d.deptno=e.deptno
+where loc like 'chicago'
+
+5
+select ename,d.loc
+from dept d
+full join emp e
+on d.deptno=e.deptno
+where loc like 'chicago'
+
+6
+select ename,d.loc
+from dept d
+full join emp e
+on d.deptno=e.deptno
+order by d.loc
+
+7
+select count(distinct e.ename) as 'totemp',count(distinct d.deptno) as 'totdept'
+from emp e,dept d
+
+8
+select e.ename,m.ename 'manager',m.hiredate 'manager hiredate',e.hiredate
+from emp e,emp m
+where e.mgr=m.empno and e.hiredate<m.hiredate
+
+9
+select count(distinct e.mgr)
+from emp e,emp w
+where e.mgr=w.empno
+
+10
+select ename,job
+from emp
+where mgr is null;
+
+11
+select ename,deptno
+from emp
+where ename ='smith'
+
+
+12
+select e.ename,e.job,d.loc
+from emp
+join dept d
+on d.deptno=e.deptno
+where e.job='salesman' and d.loc!='boston'
+
+13
+select*
+from emp e
+join dept d
+on e.deptno=d.deptno
+
+14
+select ename,job
+from emp
+where job like 'salesman' and sal<(select sal from emp where ename='miller')
+
+
+15
+select *
+from emp e
+join dep on e.deptno=d.deptno
+where d.loc like 'chicago'
+
+
+
+16
+select e.ename,e.job,d.dname,e.deptno
+from emp e
+left join dept d
+on e.deptno=d.deptno
+where d.dname='account'
+
+17
+select distinct e.ename,m.mgr
+from emp e,emp m
+where e.empno=m.mgr
+
+18
+select dname,
+           case     
+		   when dname='sales'then 'sales'
+		   else 'non sales'
+		   end as 'check'
+		   from dept
+
+19
+select sal,
+       case when sal>1000 then sal
+       else 1000
+       end as 'salary'
+       from dept
+
+20
+select sal,
+       case 
+	   when sal<1000 then 'less'
+	   when sal>2500 then 'high'
+	   else 'medium'
+	   end as 'desc'
+	   from emp
+
